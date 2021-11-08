@@ -61,15 +61,6 @@ const MyProfileScreen = ({ navigation }) => {
 					source={require("../assets/icons/editChats.png")}
 				/>
 			</View>
-			<View style={styles.logoutButton}>
-				<TouchableWithoutFeedback onPress={() => onSignoutPress()}>
-					<Text style={styles.logout}>Çıkış Yap</Text>
-				</TouchableWithoutFeedback>
-				<Image
-					style={styles.tinyLogo}
-					source={require("../assets/icons/logout.png")}
-				/>
-			</View>
 		</View>
 	);
 };
