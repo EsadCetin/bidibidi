@@ -16,6 +16,7 @@ import AddContactScreen from "./screens/AddContactScreen";
 import MyProfileScreen from "./screens/MyProfileScreen";
 import AboutScreen from "./screens/AboutScreen";
 import HelpScreen from "./screens/HelpScreen";
+import EditProfileScreen from "./screens/EditProfileScreen";
 const Stack = createStackNavigator();
 
 function MyStack() {
@@ -75,6 +76,11 @@ function MyStack() {
 				name="HelpScreen"
 				options={{ headerShown: false }}
 				component={HelpScreen}
+			/>
+			<Stack.Screen
+				name="EditProfileScreen"
+				options={{ headerShown: false }}
+				component={EditProfileScreen}
 			/>
 		</Stack.Navigator>
 	);

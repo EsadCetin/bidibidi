@@ -7,7 +7,8 @@ import { auth, db } from "../firebase";
 const MyProfileScreen = ({ navigation }) => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
-	const [image, setImage] = useState();
+	const [profilePhoto, setProfilePhoto] = useState();
+
 	const getUser = async () => {
 		await db
 			.collection("users")
@@ -16,17 +17,12 @@ const MyProfileScreen = ({ navigation }) => {
 			.then(function (doc) {
 				if (doc.exists) {
 					setName(doc.get("name"));
-					setImage(doc.get("profilePhoto"));
+					setProfilePhoto(doc.get("profilePhoto"));
 					setEmail(doc.get("email"));
 				}
 			});
 	};
 	getUser();
-	const onSignoutPress = () => {
-		auth
-			.signOut()
-			.then(console.log("signed out"), navigation.navigate("WelcomeScreen"));
-	};
 
 	return (
 		<View style={styles.view}>
@@ -41,7 +37,7 @@ const MyProfileScreen = ({ navigation }) => {
 				</View>
 				<Text style={styles.HeaderText}>Profilim</Text>
 			</View>
-			<Image source={{ uri: image }} style={styles.profilePhoto}></Image>
+			<Image source={{ uri: profilePhoto }} style={styles.profilePhoto}></Image>
 			<View>
 				<Text style={{ fontSize: 18, marginLeft: "8%" }}>Adı</Text>
 				<View style={styles.textView}>
@@ -53,7 +49,9 @@ const MyProfileScreen = ({ navigation }) => {
 				</View>
 			</View>
 			<View style={styles.editButton}>
-				<TouchableWithoutFeedback>
+				<TouchableWithoutFeedback
+					onPress={() => navigation.navigate("EditProfileScreen")}
+				>
 					<Text style={styles.edit}>Bilgileri Düzenle</Text>
 				</TouchableWithoutFeedback>
 				<Image
