@@ -5,9 +5,9 @@ import { auth, db } from "../firebase";
 
 const ChatContactScreen = ({ route, navigation }) => {
 	const { image, name } = route.params;
-	const [uid, setUid] = useState("");
+	const [email, setEmail] = useState("");
 
-	const getUid = async () => {
+	const getEmail = async () => {
 		await db
 			.collection("users")
 			.where("name", "==", name)
@@ -15,11 +15,11 @@ const ChatContactScreen = ({ route, navigation }) => {
 			.then((snap) => {
 				snap.forEach((doc) => {
 					console.log(doc.data());
-					setUid(doc.get("email"));
+					setEmail(doc.get("email"));
 				});
 			});
 	};
-	getUid();
+	getEmail();
 
 	return (
 		<View style={styles.view}>
@@ -50,7 +50,7 @@ const ChatContactScreen = ({ route, navigation }) => {
 					borderRadius: 35,
 				}}
 			>
-				{uid}
+				{email}
 			</Text>
 		</View>
 	);
